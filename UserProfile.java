@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-package uiv3;
-
-public class UserProfile {
-    private int userId;
-    private int profileId; // Auto-incrementing ID for multiple profiles
-=======
 package uiv6;
 
 public class UserProfile {
     private int userId;
     private int profileId; 
->>>>>>> first commit
+
     private double bmi;
     private double bmr;
     private int dailyCalories;
@@ -18,10 +11,8 @@ public class UserProfile {
     private int dailyProtein;
     private int dailyFats;
 
-<<<<<<< HEAD
-=======
     // parameterized constructors 
->>>>>>> first commit
+
     public UserProfile(int userId, double bmi, double bmr, int dailyCalories, int dailyCarbs, int dailyProtein, int dailyFats) {
         this.userId = userId;
         this.bmi = bmi;
@@ -32,12 +23,9 @@ public class UserProfile {
         this.dailyFats = dailyFats;
     }
 
-<<<<<<< HEAD
 
-
-=======
     // getters and setters 
->>>>>>> first commit
+
 	public int getUserId() {
 		return userId;
 	}

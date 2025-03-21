@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-package uiv3;
-=======
 package uiv6;
->>>>>>> first commit
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -16,15 +12,13 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import uiv3.CaloricChart;
+import uiv3.CaloricChartView;
 
 public class DailyCaloricRequirementWindow extends Application {
-<<<<<<< HEAD
+
     private User user;          // Store User object
     private MacroResult macroResult; // Store the calculation results
-=======
-    private User user;          // store user object
-    private MacroResult macroResult; // stores the calculation results
->>>>>>> first commit
 
     public DailyCaloricRequirementWindow() {
         this.user = null;
@@ -65,7 +59,7 @@ public class DailyCaloricRequirementWindow extends Application {
         lblDCR.setFont(new Font("Arial", 20));
         lblDCR.setStyle("-fx-text-fill: #b0b3b8; -fx-font-weight: bold;");
         
-        lblCaloriesResult = new Label(macroResult != null ? String.format("%.0f cal", macroResult.getCalories()): "");
+        lblCaloriesResult = new Label(macroResult != null ? String.format("%.0f cal", macroResult.getCalories()) : "");
         lblCaloriesResult.setFont(new Font("Arial", 18));
         lblCaloriesResult.setStyle("-fx-text-fill: #ffffff; -fx-font-weight: bold;");
         
@@ -106,11 +100,6 @@ public class DailyCaloricRequirementWindow extends Application {
         cbDietType.setPrefWidth(100);
         cbDietType.setStyle("-fx-background-color: #212121; -fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-background-radius: 11;");
         
-<<<<<<< HEAD
-=======
-
-        
->>>>>>> first commit
         cbDietType.setButtonCell(new ListCell<String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -120,53 +109,44 @@ public class DailyCaloricRequirementWindow extends Application {
             }
         });
         
-<<<<<<< HEAD
+        
+        CaloricChart caloricChart = new CaloricChart(200, 150, 50);
+        CaloricChartView chartView = new CaloricChartView(caloricChart);
+        PieChart pieChart = chartView.getPieChart();
+
+        chartView.updateChart(300, 100, 70);
+        
+        
         // Update macro distribution when diet type changes
         cbDietType.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if (user != null && macroResult != null) {
-                    String dietType;
-                    switch (cbDietType.getValue()) {
-                        case "Standard":
-                            dietType = "Standard";
-                            break;
-                        case "Low Fat":
-                            dietType = "Low Fat";
-                            break;
-                        case "Keto":
-                            dietType = "Keto";
-                            break;
-                        default:
-                            dietType = "Standard";
-                            break;
-                    }
-                    
-                    // Recalculate macros with new diet type using actual User data
-                    MacroCalculator calculator = new MacroCalculator();
-                    MacroResult newResult = calculator.calculate(user, "Mifflin-St Jeor", dietType, "Maintenance"); // Adjust goal if needed
-                    
+                    String dietType = cbDietType.getValue(); 
+                    MacroCalculator calculator = new MacroCalculator(); 
+                    MacroResult newResult = calculator.calculate(user, "Mifflin-St Jeor", dietType, user.getFitnessGoal());
+
+                    macroResult = newResult;
+
+                    // Update labels
                     lblCaloriesResult.setText(String.format("%.0f cal", newResult.getCalories()));
                     lblCarbsResult.setText(String.format("%.0f g", newResult.getCarbs()));
                     lblProteinResult.setText(String.format("%.0f g", newResult.getProtein()));
                     lblFatResult.setText(String.format("%.0f g", newResult.getFat()));
+
+                    // Update pie chart
+                    chartView.updateChart(newResult.getCarbs(), newResult.getProtein(), newResult.getFat());
                 }
             }
         });
-=======
->>>>>>> first commit
         
         btnSettings = new Button("Settings");
         btnSettings.setStyle("-fx-background-color: transparent; -fx-text-fill: #b0b3b8; -fx-font-size: 14;");
         btnSettings.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-<<<<<<< HEAD
-=======
-            	// closes itself
-            	primaryStage.close();
-            	
->>>>>>> first commit
+                primaryStage.close(); // closes itself
+                
                 SettingsWindow stWindow = new SettingsWindow();
                 Stage stWindowStage = new Stage();
                 try {
@@ -183,21 +163,13 @@ public class DailyCaloricRequirementWindow extends Application {
         btnProfileWindow.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-<<<<<<< HEAD
-                ProfileResultWindow prWindow = new ProfileResultWindow();
-                Stage prWindowStage = new Stage();
-                try {
-                    prWindow.start(prWindowStage);
-=======
-            	
-            	primaryStage.close(); // closing itself (DailycaloricRequirementWindow
-            	
-            	// open ProfileResultWindow  // currently doesn't pass any value (under maintenance)
+                primaryStage.close(); // closing itself (DailyCaloricRequirementWindow)
+                
+                // open ProfileResultWindow (currently doesn't pass any value - under maintenance)
                 ProfileResultWindow prWindow = new ProfileResultWindow();
                 Stage prWindowStage = new Stage();
                 try {
                     prWindow.start(prWindowStage); 
->>>>>>> first commit
                 } catch (Exception ex) {
                     System.out.println("Error: " + ex.getMessage());
                     ex.printStackTrace();
@@ -205,83 +177,14 @@ public class DailyCaloricRequirementWindow extends Application {
             }
         });
         
-<<<<<<< HEAD
         btnDCRWindow = new Button("Daily Caloric Requirement");
         btnDCRWindow.setStyle("-fx-background-color: transparent; -fx-text-fill: #b0b3b8; -fx-font-size: 14;");
-        btnDCRWindow.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                DailyCaloricRequirementWindow dcrWindow = new DailyCaloricRequirementWindow(user, macroResult);
-                Stage dcrWindowStage = new Stage();
-                try {
-                    dcrWindow.start(dcrWindowStage);
-                } catch (Exception ex) {
-                    System.out.println("Error: " + ex.getMessage());
-                    ex.printStackTrace();
-                }
-            }
-        });
+        // No action defined for this button as per comment
         
-        CaloricChart caloricChart = new CaloricChart(200, 150, 50);
-        CaloricChartView chartView = new CaloricChartView(caloricChart);
-        PieChart pieChart = chartView.getPieChart();
-
-        chartView.updateChart(300, 100, 70);
-        
-        
-        // When diet type changes (in cbDietType's onAction)
-        cbDietType.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                String dietType = cbDietType.getValue();
-                MacroCalculator calculator = new MacroCalculator();
-                MacroResult newResult = calculator.calculate(user, "Mifflin-St Jeor", dietType, "Maintenance");
-=======
-        
-        btnDCRWindow = new Button("Daily Caloric Requirement");
-        btnDCRWindow.setStyle("-fx-background-color: transparent; -fx-text-fill: #b0b3b8; -fx-font-size: 14;");
-        // no action window 
-        
-        
-        
-        CaloricChart caloricChart = new CaloricChart(200, 150, 50); // initial values carbs, protein, fat
-        CaloricChartView chartView = new CaloricChartView(caloricChart);
-        PieChart pieChart = chartView.getPieChart();
-        
-        // when diet type changes 
-        cbDietType.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            
-            public void handle(ActionEvent event) {
-                String dietType = cbDietType.getValue(); 
-                MacroCalculator calculator = new MacroCalculator(); 
-                MacroResult newResult = calculator.calculate(user, "Mifflin-St Jeor", dietType, user.getFitnessGoal());
->>>>>>> first commit
-                macroResult = newResult;
-
-                // Update labels
-                lblCaloriesResult.setText(String.format("%.0f cal", newResult.getCalories()));
-                lblCarbsResult.setText(String.format("%.0f g", newResult.getCarbs()));
-                lblProteinResult.setText(String.format("%.0f g", newResult.getProtein()));
-                lblFatResult.setText(String.format("%.0f g", newResult.getFat()));
-
-                // Update pie chart
-                chartView.updateChart(newResult.getCarbs(), newResult.getProtein(), newResult.getFat());
-            }
-        });
-        
-        
-<<<<<<< HEAD
-        // Column, row
-        lblTitle.relocate(117, 20);
-        pane.getChildren().add(lblTitle);
-=======
-        
-        // Column, row
+        // Column, row (single instance of each)
         lblTitle.relocate(117, 20);
         pane.getChildren().add(lblTitle);
         
->>>>>>> first commit
         lblDCR.relocate(48, 68);
         pane.getChildren().add(lblDCR);
 
@@ -290,73 +193,44 @@ public class DailyCaloricRequirementWindow extends Application {
         
         lblMacroDistribution.relocate(90, 200);
         pane.getChildren().add(lblMacroDistribution);
-<<<<<<< HEAD
+
         lblCarbs.relocate(48, 245);
         pane.getChildren().add(lblCarbs);
+        
         lblCarbsResult.relocate(48, 270);
         pane.getChildren().add(lblCarbsResult);
+        
         lblProtein.relocate(158, 245);
         pane.getChildren().add(lblProtein);
+        
         lblProteinResult.relocate(158, 270);
         pane.getChildren().add(lblProteinResult);
+        
         lblFat.relocate(280, 245);
         pane.getChildren().add(lblFat);
+        
         lblFatResult.relocate(280, 270);
         pane.getChildren().add(lblFatResult);
+        
         lblDietType.relocate(28, 525);
         pane.getChildren().add(lblDietType);
+        
         cbDietType.relocate(100, 520);
         pane.getChildren().add(cbDietType);
+        
         btnProfileWindow.relocate(70, 600);
         pane.getChildren().add(btnProfileWindow);
+        
         btnDCRWindow.relocate(140, 600);
         pane.getChildren().add(btnDCRWindow);
+        
         btnSettings.relocate(300, 20);
         pane.getChildren().add(btnSettings);
         
-        pieChart.relocate(75,320);// Position below labels
+        pieChart.relocate(75, 320); // Position below labels
         pane.getChildren().add(pieChart); // Add pie chart to pane
-=======
-        
-        lblCarbs.relocate(48, 245);
-        pane.getChildren().add(lblCarbs);
-        
-        lblCarbsResult.relocate(48, 270);
-        pane.getChildren().add(lblCarbsResult);
-        
-        lblProtein.relocate(158, 245);
-        pane.getChildren().add(lblProtein);
-        
-        lblProteinResult.relocate(158, 270);
-        pane.getChildren().add(lblProteinResult);
-        
-        lblFat.relocate(280, 245);
-        pane.getChildren().add(lblFat);
-        
-        lblFatResult.relocate(280, 270);
-        pane.getChildren().add(lblFatResult);
-        
-        lblDietType.relocate(28, 525);
-        pane.getChildren().add(lblDietType);
-        
-        cbDietType.relocate(100, 520);
-        pane.getChildren().add(cbDietType);
-        
-        btnProfileWindow.relocate(70, 600);
-        pane.getChildren().add(btnProfileWindow);
-        
-        btnDCRWindow.relocate(140, 600);
-        pane.getChildren().add(btnDCRWindow);
-        
-        btnSettings.relocate(300, 20);
-        pane.getChildren().add(btnSettings);
-        
-        pieChart.relocate(75,320);
-        pane.getChildren().add(pieChart); 
->>>>>>> first commit
         
         primaryStage.show();
-        
     }
 
     public static void main(String[] args) {

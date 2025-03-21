@@ -1,63 +1,3 @@
-<<<<<<< HEAD
-package uiv3;
-
-public class MacroCalculator {
-    public MacroResult calculate(User user, String formula, String dietType, String goal) {
-       
-    	double bmr;
-    	
-        if ("Harris-Benedict".equals(formula)) {
-            if ("Male".equals(user.getGender())) {
-                bmr = 88.362 + (13.397 * user.getWeight()) + (4.799 * user.getHeight()) - (5.677 * user.getAge());
-            } else {
-                bmr = 447.593 + (9.247 * user.getWeight()) + (3.098 * user.getHeight()) - (4.330 * user.getAge());
-            }
-        } else { // Mifflin-St Jeor
-            bmr = (10 * user.getWeight()) + (6.25 * user.getHeight()) - (5 * user.getAge());
-            bmr += "Male".equals(user.getGender()) ? 5 : -161;
-        }
-
-        double activityMultiplier = switch (user.getActivityLevel()) {
-            case "Sedentary" -> 1.2;  // Changed from "Normal" to "Sedentary"
-            case "Moderate" -> 1.55;
-            case "Active" -> 1.725;
-            default -> 1.2;
-        };
-        double calories = bmr * activityMultiplier;
-
-        calories = switch (goal) {
-            case "Weight Loss" -> calories * 0.8;
-            case "Muscle Gain" -> calories * 1.1;
-            case "Maintenance" -> calories;
-            default -> calories;
-        };
-
-        double bmi = user.getWeight() / Math.pow(user.getHeight() / 100, 2);
-
-        double proteinPercentage, fatPercentage, carbPercentage;
-        switch (dietType) {
-            case "Keto":
-                proteinPercentage = 0.25;
-                fatPercentage = 0.70;
-                carbPercentage = 0.05;
-                break;
-            case "Low Fat":
-                proteinPercentage = 0.35;
-                fatPercentage = 0.15;
-                carbPercentage = 0.50;
-                break;
-            case "Standard": default:
-                proteinPercentage = 0.30;
-                fatPercentage = 0.30;
-                carbPercentage = 0.40;
-                break;
-        }
-
-        double protein = (calories * proteinPercentage) / 4;
-        double fat = (calories * fatPercentage) / 9;
-        double carbs = (calories * carbPercentage) / 4;
-
-=======
 package uiv6;
 
 public class MacroCalculator {
@@ -139,7 +79,7 @@ public class MacroCalculator {
         double carbs = (calories * carbPercentage) / 4;      // carbs 4 cal per gram
 
         // returns all results in a MacroResult object
->>>>>>> first commit
+
         return new MacroResult(calories, protein, carbs, fat, bmr, bmi);
     }
 }

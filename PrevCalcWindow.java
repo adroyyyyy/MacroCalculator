@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-package uiv3;
-=======
 package uiv6;
->>>>>>> first commit
+
 
 import java.util.List;
 import javafx.application.Application;

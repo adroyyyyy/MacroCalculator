@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-package uiv3;
-
-public class MacroResult {
-	
-    private double calories, protein, carbs, fat, bmr, bmi;
-
-=======
 package uiv6;
 
 public class MacroResult {
@@ -13,7 +5,7 @@ public class MacroResult {
     private double calories, protein, carbs, fat, bmr, bmi; 
     
     // Parameterized Constructor 
->>>>>>> first commit
+
     public MacroResult(double calories, double protein, double carbs, double fat, double bmr, double bmi) {
         this.calories = calories;
         this.protein = protein;
@@ -22,9 +14,9 @@ public class MacroResult {
         this.bmr = bmr;
         this.bmi = bmi;
     }
-<<<<<<< HEAD
 
-=======
+
+
     
     
     // Setters
@@ -55,7 +47,7 @@ public class MacroResult {
 
 
 	// Getters 
->>>>>>> first commit
+
     public double getCalories() { 
     	return calories;
     }

@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-package uiv3;
+
+package uiv6;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -7,14 +7,8 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class CaloricChartView extends Application {
-=======
-package uiv6;
-
-import javafx.scene.chart.PieChart;
-
-public class CaloricChartView {
->>>>>>> first commit
+public class CaloricChartView extends Application  {
+	
     private CaloricChart caloricChart;
     private PieChart pieChart;
     private PieChart.Data carbsData;
@@ -23,7 +17,7 @@ public class CaloricChartView {
 
     public CaloricChartView(CaloricChart caloricChart) {
         this.caloricChart = caloricChart;
-<<<<<<< HEAD
+
     }
 
     @Override
@@ -43,18 +37,11 @@ public class CaloricChartView {
         primaryStage.show();
     }
 
-    public PieChart getPieChart() {
-        pieChart = createPieChart();
-        pieChart.setPrefSize(150, 150);
-        return pieChart;
-=======
-        this.pieChart = createPieChart(); // Initialize PieChart and data in constructor
-    }
 
     public PieChart getPieChart() {
         pieChart.setPrefSize(150, 150); // Configure size when requested
         return pieChart; // Return the existing instance
->>>>>>> first commit
+
     }
 
     public void updateChart(double carbs, double protein, double fats) {
@@ -78,21 +65,20 @@ public class CaloricChartView {
 
         carbsData.getNode().setStyle("-fx-pie-color: #ffd300;"); // yellow
         proteinData.getNode().setStyle("-fx-pie-color: #bd83fc;"); // purple
-<<<<<<< HEAD
+
         fatsData.getNode().setStyle("-fx-pie-color: #ff4444;");	// red
-=======
+
         fatsData.getNode().setStyle("-fx-pie-color: #ff4444;"); // red
->>>>>>> first commit
+
         
         pieChart.setLabelsVisible(false); // remove the labels
 
         return pieChart;
     }
-<<<<<<< HEAD
+
 
     public static void main(String[] args) {
         launch(args);
     }
-=======
->>>>>>> first commit
 }
+

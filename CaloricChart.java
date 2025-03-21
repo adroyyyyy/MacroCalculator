@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-package uiv3;
-=======
 package uiv6;
->>>>>>> first commit
 
 public class CaloricChart {
     private double carbs;
