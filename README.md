@@ -10,4 +10,6 @@ This is a fitness application that calculates BMI, BMR, and provides daily calor
 ## How to Run:
 1. Download and clone the repository.
 2. Compile the Java files.
-3. Run the `LoginWindow` class.
+3. Inside of database there is SQL query for the database of this application
+4. Run the `LoginWindow` class.
+
