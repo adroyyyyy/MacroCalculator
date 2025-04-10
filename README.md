@@ -14,5 +14,6 @@ This is a fitness application that calculates BMI, BMR, and provides daily calor
 4. Run the `LoginWindow` class.
 
 ** NOTE ** 
+Main branch.
 Be sure to add Images folder and the SQL query in your mySQL database before running.
 
